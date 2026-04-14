@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Stack — Seven Tools, Ranked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2ebe0;
+    --paper-dark: #e8dfd0;
+    --ink: #181613;
+    --accent: #c1440e;
+    --accent-2: #3d5a3a;
+    --muted: #6b5f52;
+    --rule: #181613;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(193, 68, 14, 0.04) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(61, 90, 58, 0.04) 0, transparent 40%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    z-index: 100;
+    mix-blend-mode: multiply;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* MASTHEAD */
+  header.masthead {
+    border-bottom: 3px double var(--rule);
+    padding: 20px 0 16px;
+  }
+  .mast-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--muted);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(24,22,19,0.2);
+    margin-bottom: 16px;
+  }
+  .mast-title {
+    font-size: clamp(56px, 12vw, 164px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+    font-style: italic;
+  }
+  .mast-title em { font-style: normal; color: var(--accent); }
+  .mast-sub {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 14px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
+  .hero-kicker {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero h2 {
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.02;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero h2 em { color: var(--accent); font-style: italic; }
+  .hero-lede {
+    font-size: 18px; line-height: 1.65; color: var(--ink);
+    max-width: 460px;
+    padding-left: 28px;
+    border-left: 2px solid var(--accent);
+  }
+  .hero-lede::first-letter {
+    font-size: 52px; float: left; line-height: 0.9; padding: 4px 10px 0 0;
+    font-weight: 900; color: var(--accent);
+  }
+
+  /* SECTION RULE */
+  .section-rule {
+    display: flex; align-items: center; gap: 16px; padding: 40px 0 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.25em; color: var(--muted);
+  }
+  .section-rule::before, .section-rule::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule); opacity: 0.3;
+  }
+
+  /* RANKINGS */
+  .rankings { padding-bottom: 40px; }
+  .rank {
+    display: grid;
+    grid-template-columns: 160px 1fr 380px;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(24,22,19,0.2);
+    align-items: start;
+    position: relative;
+  }
+  .rank-num {
+    font-size: 140px;
+    font-weight: 900;
+    line-height: 0.8;
+    font-style: italic;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    position: sticky; top: 20px;
+  }
+  .rank-num .slash {
+    display: block; font-size: 11px; font-style: normal; font-weight: 400;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); margin-top: 12px;
+  }
+  .rank-body h3 {
+    font-size: 52px; font-weight: 600; line-height: 0.95;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+  }
+  .rank-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid var(--ink); margin-bottom: 20px;
+  }
+  .rank-body p {
+    font-size: 17px; line-height: 1.65; margin-bottom: 16px;
+    max-width: 58ch;
+  }
+  .rank-aside {
+    background: var(--paper-dark);
+    padding: 28px 28px 32px;
+    border: 1px solid var(--ink);
+    position: relative;
+  }
+  .rank-aside::before {
+    content: 'USE CASE';
+    position: absolute; top: -10px; left: 20px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+  }
+  .rank-aside h4 {
+    font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 14px; color: var(--accent-2); font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .rank-aside ul { list-style: none; }
+  .rank-aside li {
+    font-size: 15px; line-height: 1.55; padding: 10px 0;
+    border-top: 1px dashed rgba(24,22,19,0.25);
+    display: flex; gap: 12px;
+  }
+  .rank-aside li:first-of-type { border-top: none; padding-top: 0; }
+  .rank-aside li::before {
+    content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0;
+  }
+
+  .rank.featured {
+    background: var(--ink); color: var(--paper); margin: 32px -32px 0;
+    padding: 64px 32px;
+  }
+  .rank.featured .rank-num { color: var(--accent); }
+  .rank.featured .rank-num .slash { color: rgba(242,235,224,0.5); }
+  .rank.featured .rank-tag { border-color: var(--paper); color: var(--paper); }
+  .rank.featured .rank-aside {
+    background: transparent; border-color: var(--paper);
+  }
+  .rank.featured .rank-aside::before { background: var(--ink); color: var(--paper); }
+  .rank.featured .rank-aside h4 { color: var(--accent); }
+  .rank.featured .rank-aside li { border-color: rgba(242,235,224,0.2); }
+  .rank.featured .rank-aside li::before { color: var(--accent); }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 80px 0;
+    padding: 60px 0;
+    border-top: 3px double var(--rule);
+    border-bottom: 3px double var(--rule);
+    text-align: center;
+  }
+  .pullquote blockquote {
+    font-size: clamp(28px, 4vw, 48px);
+    font-style: italic; font-weight: 400; line-height: 1.15;
+    letter-spacing: -0.015em;
+    max-width: 900px; margin: 0 auto;
+    font-variation-settings: "opsz" 144;
+  }
+  .pullquote blockquote::before { content: '"'; color: var(--accent); font-size: 1.5em; line-height: 0; position: relative; top: 0.3em; margin-right: 4px; }
+  .pullquote blockquote::after { content: '"'; color: var(--accent); font-size: 1.5em; line-height: 0; position: relative; top: 0.3em; margin-left: 4px; }
+  .pullquote cite {
+    display: block; margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); font-style: normal;
+  }
+
+  /* OS SECTION */
+  .os {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    padding: 60px 0 80px;
+  }
+  .os h2 {
+    font-size: 72px; line-height: 0.9; font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .os h2 em { color: var(--accent); font-style: italic; }
+  .os-steps { counter-reset: step; }
+  .os-step {
+    padding: 24px 0; border-top: 1px solid rgba(24,22,19,0.2);
+    display: grid; grid-template-columns: 60px 1fr; gap: 20px;
+    counter-increment: step;
+  }
+  .os-step:last-child { border-bottom: 1px solid rgba(24,22,19,0.2); }
+  .os-step::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    color: var(--accent); font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+  .os-step h4 {
+    font-size: 22px; margin-bottom: 6px; font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .os-step p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 60px 0 30px; margin-top: 80px;
+  }
+  .foot-top {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(242,235,224,0.2);
+  }
+  .foot-top h3 { font-size: 48px; line-height: 1; font-weight: 600; letter-spacing: -0.02em; max-width: 600px; }
+  .foot-top h3 em { color: var(--accent); font-style: italic; }
+  .foot-bot {
+    display: flex; justify-content: space-between; padding-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(242,235,224,0.6);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .os { grid-template-columns: 1fr; gap: 32px; }
+    .rank { grid-template-columns: 1fr; gap: 24px; }
+    .rank-num { font-size: 96px; position: static; }
+    .rank.featured { margin: 32px -20px 0; padding: 48px 20px; }
+    .rank-body h3 { font-size: 40px; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-top">
+      <span>Vol. I &nbsp;·&nbsp; No. 07</span>
+      <span>A Field Guide</span>
+      <span>April 2026</span>
+    </div>
+    <h1 class="mast-title">The AI <em>Stack</em></h1>
+    <div class="mast-sub">
+      <span>Seven tools, ranked by impact</span>
+      <span>$0 — free to read</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-kicker">The Essay — 04 min read</div>
+      <h2>Most AI tools are noise. <em>Seven</em> move the needle.</h2>
+    </div>
+    <p class="hero-lede">
+      Every week brings a new model, a new wrapper, a new promise of transformed productivity. After building businesses on top of these tools, only a handful have earned a line item in the subscription stack. What follows is the list — ranked from useful to indispensable — with the workflow each one actually pays off.
+    </p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="section-rule"><span>The Ranking · Ascending Order</span></div>
+
+  <div class="rankings">
+
+    <article class="rank">
+      <div class="rank-num">07<span class="slash">Seventh / Gemini</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Visual Iteration</span>
+        <h3>Gemini</h3>
+        <p>Underrated for research inside Google's own ecosystem — YouTube data in particular, since it's trained on the house infrastructure. But the real reason it earns a slot is image work: rapid-fire iteration on graphics and thumbnails with the Nano Banana model before committing to a final design.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>YouTube-specific research pulls</li>
+          <li>Thumbnail and graphic iteration</li>
+          <li>Fast visual prototyping</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank">
+      <div class="rank-num">06<span class="slash">Sixth / Grok</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Real-Time Data</span>
+        <h3>Grok</h3>
+        <p>The only model plugged directly into X's live firehose. When markets move, headlines break, or a crypto story develops in real time, Grok sees it first. It can pull context from a specific tweet and analyze it — useful for traders and anyone whose edge depends on being early rather than right.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Breaking news and market shifts</li>
+          <li>Live crypto and equities monitoring</li>
+          <li>Tweet-level analysis and context</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank">
+      <div class="rank-num">05<span class="slash">Fifth / NotebookLM</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Learning Engine</span>
+        <h3>NotebookLM</h3>
+        <p>A secret weapon for learning. Upload PDFs, research papers, or YouTube videos and it produces summaries and flashcards on demand. The sharper play is reverse-engineering: transcribe a viral video, feed it in, and dissect exactly why it worked so the pattern can be reused.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Research paper condensation</li>
+          <li>Reverse-engineering viral content</li>
+          <li>Flashcards from long-form video</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank">
+      <div class="rank-num">04<span class="slash">Fourth / Perplexity</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Multimodal Research</span>
+        <h3>Perplexity</h3>
+        <p>The Computer version runs multiple LLMs — Claude, GPT, Gemini — through a single prompt. Where it earns its keep is automation: daily market research reports that land in an email or Slack channel without Zapier, without a middleware stack, without the usual glue.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Multi-model prompting in one shot</li>
+          <li>Automated daily research reports</li>
+          <li>Native email and Slack delivery</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank">
+      <div class="rank-num">03<span class="slash">Third / Manus</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Agentic Work</span>
+        <h3>Manus</h3>
+        <p>An AI agent in your pocket. Cheaper than Perplexity, zero setup. Point it at a property market and it scans for discounts autonomously; point it at a competitor set and it runs analysis across multiple sites without further instruction. Best-in-class when the task is "go do this while I do something else."</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Autonomous market scanning</li>
+          <li>Multi-site competitive analysis</li>
+          <li>Background agentic workflows</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank">
+      <div class="rank-num">02<span class="slash">Second / ChatGPT</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">Strategic Sparring</span>
+        <h3>ChatGPT</h3>
+        <p>Called overrated by people who have used it too long, but still a powerhouse for brainstorming and business strategy. The framing that sticks: a thinking partner rather than an executor. Voice prompting and the desktop and mobile interfaces remain more refined than the competition — worth the seat for the interface alone.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Strategy and brainstorming sessions</li>
+          <li>Voice-first prompting</li>
+          <li>Polished cross-device experience</li>
+        </ul>
+      </aside>
+    </article>
+
+    <article class="rank featured">
+      <div class="rank-num">01<span class="slash">First / Claude</span></div>
+      <div class="rank-body">
+        <span class="rank-tag">The One To Keep</span>
+        <h3>Claude</h3>
+        <p>If the budget collapsed to one subscription, this is the one. Writer, coder, executor — all in a single tab. Artifacts generate interactive websites and dashboards on the fly. Claude Code is the best in its class. Projects hold enough context to remember an entire business. It retains 80 to 90 percent of the value of every other tool on this list, combined.</p>
+      </div>
+      <aside class="rank-aside">
+        <h4>Where it wins</h4>
+        <ul>
+          <li>Human-sounding long-form writing</li>
+          <li>Coding at production quality</li>
+          <li>Interactive artifacts and dashboards</li>
+          <li>Massive-context business memory</li>
+        </ul>
+      </aside>
+    </article>
+
+  </div>
+
+  <div class="pullquote">
+    <blockquote>If you could only subscribe to one tool, Claude would be the choice.</blockquote>
+    <cite>— The Thesis, in one sentence</cite>
+  </div>
+
+  <div class="section-rule"><span>Workflow Deep Dive · Personal OS</span></div>
+
+  <section class="os">
+    <div>
+      <h2>Build a <em>second brain</em> that runs itself.</h2>
+      <p style="margin-top: 24px; font-size: 17px; line-height: 1.65; max-width: 42ch; color: var(--muted);">
+        The highest-leverage workflow on the list: a personal operating system built on Claude Code that synthesizes messages, finances, and business data into a single dashboard. Six steps, no CS degree required.
+      </p>
+    </div>
+    <div class="os-steps">
+      <div class="os-step">
+        <div>
+          <h4>Synthesize the inputs</h4>
+          <p>Wire up daily messages, financial data, and business activity into a single dashboard view — everything on one page, at a glance.</p>
+        </div>
+      </div>
+      <div class="os-step">
+        <div>
+          <h4>Let Claude Code do the build</h4>
+          <p>No developer background needed. It's fast, consistent, and handles the kind of scaffolding that used to require years of engineering reps.</p>
+        </div>
+      </div>
+      <div class="os-step">
+        <div>
+          <h4>Load context via Projects</h4>
+          <p>Drop in long-form business docs — thirty-plus pages is fine — so responses are grounded in your specifics, not generic advice.</p>
+        </div>
+      </div>
+      <div class="os-step">
+        <div>
+          <h4>Design it with Artifacts</h4>
+          <p>Build the interactive dashboard and visual layer directly in Claude. HTML, charts, live components — all generated in-session.</p>
+        </div>
+      </div>
+      <div class="os-step">
+        <div>
+          <h4>Go remote</h4>
+          <p>Pair with Dispatch and Cowork to drive the system from a phone or Telegram. Build spreadsheets and ship code from anywhere.</p>
+        </div>
+      </div>
+      <div class="os-step">
+        <div>
+          <h4>Train custom Skills</h4>
+          <p>Teach it your voice from past writing. Now the system doesn't just run the business — it communicates in your register.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <h3>The stack is small. The <em>leverage</em> is not.</h3>
+      <div class="mono" style="font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(242,235,224,0.6); text-align: right;">
+        End of Issue<br>
+        <span style="color: var(--accent);">01 / 07 / 01</span>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>The AI Stack</span>
+      <span>A Field Guide · 2026</span>
+      <span>Set in Fraunces &amp; JetBrains Mono</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
