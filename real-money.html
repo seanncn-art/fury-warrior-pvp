@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Money — Gold & The 5,000 Year Lie Detector</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0b07;
+    --bg-2: #17120b;
+    --ink: #f5ecd7;
+    --ink-dim: #b8a87f;
+    --muted: #7a6b4e;
+    --gold: #d4a838;
+    --gold-bright: #f0c857;
+    --rust: #8b3a1a;
+    --rule: #f5ecd7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(212, 168, 56, 0.07) 0, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(139, 58, 26, 0.06) 0, transparent 45%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    z-index: 100;
+    mix-blend-mode: overlay;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* MASTHEAD */
+  header.masthead {
+    border-bottom: 3px double var(--gold);
+    padding: 20px 0 16px;
+  }
+  .mast-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--ink-dim);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(245, 236, 215, 0.15);
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mast-title {
+    font-size: clamp(56px, 12vw, 164px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .mast-title em { font-style: normal; color: var(--gold); }
+  .mast-sub {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 14px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid rgba(245, 236, 215, 0.15); position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
+  .hero-kicker {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero h2 {
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.02;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero h2 em { color: var(--gold); font-style: italic; }
+  .hero-lede {
+    font-size: 18px; line-height: 1.65; color: var(--ink);
+    max-width: 460px;
+    padding-left: 28px;
+    border-left: 2px solid var(--gold);
+  }
+  .hero-lede::first-letter {
+    font-size: 52px; float: left; line-height: 0.9; padding: 4px 10px 0 0;
+    font-weight: 900; color: var(--gold); font-style: italic;
+  }
+
+  /* SECTION RULE */
+  .section-rule {
+    display: flex; align-items: center; gap: 16px; padding: 60px 0 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.25em; color: var(--ink-dim);
+  }
+  .section-rule::before, .section-rule::after {
+    content: ''; flex: 1; height: 1px; background: var(--ink); opacity: 0.2;
+  }
+
+  /* CHAPTERS */
+  .chapter {
+    display: grid;
+    grid-template-columns: 160px 1fr 380px;
+    gap: 48px;
+    padding: 56px 0;
+    border-bottom: 1px solid rgba(245, 236, 215, 0.15);
+    align-items: start;
+  }
+  .ch-num {
+    font-size: 140px;
+    font-weight: 900;
+    line-height: 0.8;
+    font-style: italic;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.05em;
+    color: var(--gold);
+    position: sticky; top: 20px;
+  }
+  .ch-num .slash {
+    display: block; font-size: 11px; font-style: normal; font-weight: 400;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--ink-dim); margin-top: 12px;
+  }
+  .ch-body h3 {
+    font-size: 48px; font-weight: 600; line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .ch-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid var(--gold); margin-bottom: 20px;
+    color: var(--gold);
+  }
+  .ch-body p {
+    font-size: 17px; line-height: 1.7; margin-bottom: 16px;
+    max-width: 60ch;
+    color: var(--ink);
+  }
+  .ch-aside {
+    background: var(--bg-2);
+    padding: 28px 28px 32px;
+    border: 1px solid var(--gold);
+    position: relative;
+  }
+  .ch-aside::before {
+    content: attr(data-label);
+    position: absolute; top: -10px; left: 20px;
+    background: var(--bg);
+    padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    color: var(--gold);
+  }
+  .ch-aside h4 {
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 14px; color: var(--gold); font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .ch-aside ul { list-style: none; }
+  .ch-aside li {
+    font-size: 15px; line-height: 1.55; padding: 10px 0;
+    border-top: 1px dashed rgba(245, 236, 215, 0.2);
+    display: flex; gap: 12px;
+    color: var(--ink);
+  }
+  .ch-aside li:first-of-type { border-top: none; padding-top: 0; }
+  .ch-aside li::before {
+    content: '◆'; color: var(--gold); font-size: 10px; flex-shrink: 0; padding-top: 5px;
+  }
+  .ch-aside .stat {
+    font-size: 36px; font-weight: 900; font-style: italic;
+    color: var(--gold-bright); line-height: 1;
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 4px;
+  }
+  .ch-aside .stat-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-dim); font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 16px;
+  }
+
+  /* BIG STATS STRIP */
+  .stats-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--gold);
+    color: var(--bg);
+    margin: 60px -32px;
+    padding: 48px 32px;
+  }
+  .stats-strip .stat-box {
+    padding: 0 20px;
+    border-right: 1px solid rgba(14, 11, 7, 0.25);
+  }
+  .stats-strip .stat-box:last-child { border-right: none; }
+  .stats-strip .big {
+    font-size: 56px; font-weight: 900; font-style: italic; line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-variation-settings: "opsz" 144;
+  }
+  .stats-strip .cap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    margin-top: 12px; color: rgba(14, 11, 7, 0.75);
+  }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 20px 0;
+    padding: 80px 0;
+    border-top: 3px double var(--gold);
+    border-bottom: 3px double var(--gold);
+    text-align: center;
+    position: relative;
+  }
+  .pullquote blockquote {
+    font-size: clamp(28px, 4.2vw, 54px);
+    font-style: italic; font-weight: 400; line-height: 1.12;
+    letter-spacing: -0.015em;
+    max-width: 980px; margin: 0 auto;
+    font-variation-settings: "opsz" 144;
+    color: var(--ink);
+  }
+  .pullquote blockquote em { color: var(--gold); font-style: italic; }
+  .pullquote cite {
+    display: block; margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--ink-dim); font-style: normal;
+  }
+
+  /* COMPARISON TABLE */
+  .compare {
+    padding: 20px 0 80px;
+  }
+  .compare-head {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    margin-bottom: 40px;
+  }
+  .compare-head h2 {
+    font-size: 64px; line-height: 0.92; font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .compare-head h2 em { color: var(--gold); font-style: italic; }
+  .compare-head p {
+    font-size: 17px; line-height: 1.65; color: var(--ink-dim);
+    max-width: 48ch; align-self: end;
+  }
+  .compare-table {
+    display: grid;
+    grid-template-columns: 180px 1fr 1fr;
+    border-top: 1px solid var(--gold);
+  }
+  .compare-table > div {
+    padding: 24px 20px;
+    border-bottom: 1px solid rgba(245, 236, 215, 0.15);
+  }
+  .compare-table .row-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-dim); padding-top: 28px;
+  }
+  .compare-table .gold-col {
+    background: rgba(212, 168, 56, 0.08);
+    border-left: 2px solid var(--gold);
+    font-size: 17px; line-height: 1.5;
+  }
+  .compare-table .fiat-col {
+    font-size: 17px; line-height: 1.5;
+    color: var(--ink-dim);
+  }
+  .compare-table .header-row {
+    background: transparent;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 16px 20px;
+  }
+  .compare-table .header-row.gold-h { color: var(--gold); }
+  .compare-table .header-row.fiat-h { color: var(--ink-dim); }
+
+  /* ALLOCATION / IMPLEMENTATION */
+  .implement { padding: 20px 0 80px; }
+  .implement-head { margin-bottom: 40px; }
+  .implement-head h2 {
+    font-size: 64px; line-height: 0.92; font-weight: 600;
+    letter-spacing: -0.03em; max-width: 14ch;
+  }
+  .implement-head h2 em { color: var(--gold); font-style: italic; }
+  .implement-head p {
+    font-size: 17px; line-height: 1.65; color: var(--ink-dim);
+    max-width: 56ch; margin-top: 20px;
+  }
+  .impl-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .impl-card {
+    background: var(--bg-2);
+    border: 1px solid rgba(245, 236, 215, 0.15);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .impl-card::before {
+    content: attr(data-num);
+    position: absolute; top: 20px; right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  .impl-card h4 {
+    font-size: 28px; font-weight: 600; letter-spacing: -0.015em;
+    margin-bottom: 6px; color: var(--ink);
+  }
+  .impl-card .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .impl-card p {
+    font-size: 15px; line-height: 1.6; color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .impl-card .meta {
+    display: flex; justify-content: space-between;
+    padding-top: 16px; border-top: 1px dashed rgba(245, 236, 215, 0.2);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .impl-card .meta .good { color: var(--gold); }
+  .impl-card .meta .bad { color: var(--rust); }
+
+  /* FOOTER */
+  footer {
+    background: var(--gold);
+    color: var(--bg);
+    padding: 80px 0 40px;
+    margin-top: 80px;
+  }
+  .foot-top {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(14, 11, 7, 0.3);
+  }
+  .foot-top h3 {
+    font-size: 56px; line-height: 0.95; font-weight: 600;
+    letter-spacing: -0.025em; max-width: 680px;
+  }
+  .foot-top h3 em { font-style: italic; color: var(--bg-2); }
+  .foot-bot {
+    display: flex; justify-content: space-between; padding-top: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(14, 11, 7, 0.7);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .compare-head, .impl-grid { grid-template-columns: 1fr; gap: 32px; }
+    .chapter { grid-template-columns: 1fr; gap: 24px; }
+    .ch-num { font-size: 96px; position: static; }
+    .ch-body h3 { font-size: 36px; }
+    .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 32px 0; }
+    .stats-strip .big { font-size: 40px; }
+    .stats-strip .stat-box:nth-child(2) { border-right: none; }
+    .compare-table { grid-template-columns: 1fr; }
+    .compare-table .row-label { padding-top: 16px; padding-bottom: 0; border-bottom: none; }
+    .container { padding: 0 20px; }
+    .stats-strip { margin: 40px -20px; }
+    .foot-top { flex-direction: column; gap: 24px; align-items: flex-start; }
+    .foot-top h3 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-top">
+      <span>Vol. I &nbsp;·&nbsp; No. 08</span>
+      <span>A Monetary Primer</span>
+      <span>April 2026</span>
+    </div>
+    <h1 class="mast-title">Real <em>Money</em></h1>
+    <div class="mast-sub">
+      <span>Gold &amp; the 5,000-year lie detector</span>
+      <span>$0 — free to read</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-kicker">The Essay — 06 min read</div>
+      <h2>If you don't understand gold, you don't understand <em>money</em>.</h2>
+    </div>
+    <p class="hero-lede">
+      For fifty centuries, every major civilization on earth agreed: gold is money. Fifty years ago, governments ran a different experiment. Paper, backed by promise. Digits on a screen, backed by nothing. The experiment is still live — and starting to show its seams. What follows is the story of why gold became money, what changed in 1971, and what the central banks are quietly doing right now.
+    </p>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="section-rule"><span>The Chapters · Six Parts</span></div>
+
+  <article class="chapter">
+    <div class="ch-num">01<span class="slash">Origin / Engineered</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">The Science of Scarcity</span>
+      <h3>Gold wasn't chosen at random.</h3>
+      <p>Out of 118 elements on the periodic table, humanity converged on one. Gold doesn't corrode — pull a coin from a 400-year-old shipwreck and it looks the same. It's divisible without losing purity. It's malleable enough that one ounce can be hammered into a hundred square feet of sheet, or drawn into wire thinner than a human hair.</p>
+      <p>And it's brutally scarce. Can't be synthesized. Can't be printed. Every ounce ever mined in human history would fit inside three and a half Olympic swimming pools. Those physical properties are why it became money — not the other way around.</p>
+    </div>
+    <aside class="ch-aside" data-label="PROPERTIES">
+      <h4>Why Gold, Specifically</h4>
+      <ul>
+        <li>Does not corrode or tarnish</li>
+        <li>Infinitely divisible without loss</li>
+        <li>Malleable: 1 oz → 100 sq ft sheet</li>
+        <li>Cannot be synthesized or printed</li>
+        <li>All mined gold fits in 3.5 pools</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="chapter">
+    <div class="ch-num">02<span class="slash">Measuring Stick</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">Store of Value</span>
+      <h3>It's not an investment. It's a ruler.</h3>
+      <p>Gold doesn't pay dividends, rent, or interest. It doesn't generate cash flow. Technically, it isn't an investment — it's a measuring stick. A way to check whether the paper in your wallet is still holding its shape.</p>
+      <p>Two thousand years ago, a Roman Centurion earned roughly one ounce of gold per month. That ounce bought him a high-quality toga, belt, and sandals. Today, the same ounce buys a well-tailored suit and a decent pair of shoes. Gold didn't go up. The currency around it lost ground. The suit stayed the suit.</p>
+    </div>
+    <aside class="ch-aside" data-label="THE TEST">
+      <div class="stat">1 oz</div>
+      <div class="stat-label">Roman Centurion / Month</div>
+      <h4>What it bought then</h4>
+      <ul>
+        <li>Quality toga, belt, sandals</li>
+      </ul>
+      <h4 style="margin-top: 20px;">What it buys now</h4>
+      <ul>
+        <li>Tailored suit and shoes</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="chapter">
+    <div class="ch-num">03<span class="slash">The Pivot / 1971</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">Severed Anchor</span>
+      <h3>August 15, 1971.</h3>
+      <p>Before that date, the dollar was a receipt for physical gold. The 1944 Bretton Woods Agreement pegged it at $35 per ounce, and every other global currency pegged to the dollar. It worked — until Vietnam War spending and Great Society programs outran the gold in the vaults.</p>
+      <p>France noticed. They demanded their physical gold back. Other nations followed. Rather than default openly, Nixon went on television and "temporarily" suspended convertibility. The word temporary is still doing a lot of work, fifty-four years later. That was the moment the dollar became fiat — backed by a government's promise and nothing else.</p>
+    </div>
+    <aside class="ch-aside" data-label="TIMELINE">
+      <h4>The Fiat Pivot</h4>
+      <ul>
+        <li>1944 — Bretton Woods, $35/oz peg</li>
+        <li>1960s — Vietnam + Great Society spending</li>
+        <li>1971 — France demands physical gold</li>
+        <li>Aug 15, 1971 — Nixon closes gold window</li>
+        <li>Present — "Temporary" is 54 years old</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="chapter">
+    <div class="ch-num">04<span class="slash">The Slow Bleed</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">Inflation as Transfer</span>
+      <h3>A dollar from 1971 is worth 7 cents.</h3>
+      <p>Without the gold anchor, there's no ceiling on how much money can be printed. In 1981, roughly $860 billion circulated. By 2021, that figure was $22 trillion. During the eighteen months of the pandemic, 40% of every dollar that has ever existed was created. The supply chart looks like a hockey stick because it is one.</p>
+      <p>The polite term is inflation. The accurate term is a wealth transfer — from savers to borrowers, from wage-earners to asset-owners, from people who held cash to people who held houses, stocks, and gold. It is not a bug in the system. It is the system.</p>
+    </div>
+    <aside class="ch-aside" data-label="THE NUMBERS">
+      <div class="stat">93%</div>
+      <div class="stat-label">Purchasing power lost since 1971</div>
+      <h4>The Printing Record</h4>
+      <ul>
+        <li>1981 supply — $860 billion</li>
+        <li>2021 supply — $22 trillion</li>
+        <li>COVID era — 40% of all USD printed in 18 mo</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- STATS STRIP -->
+</div>
+
+<div class="stats-strip">
+  <div class="stat-box">
+    <div class="big">5,000</div>
+    <div class="cap">Years as money</div>
+  </div>
+  <div class="stat-box">
+    <div class="big">54</div>
+    <div class="cap">Years as paper</div>
+  </div>
+  <div class="stat-box">
+    <div class="big">$40T</div>
+    <div class="cap">Approaching US debt</div>
+  </div>
+  <div class="stat-box">
+    <div class="big">$1T / 100d</div>
+    <div class="cap">New debt pace</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <article class="chapter">
+    <div class="ch-num">05<span class="slash">The Quiet Bid</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">Central Bank Accumulation</span>
+      <h3>They called it a barbarous relic. They're buying it at record levels.</h3>
+      <p>For decades, official channels dismissed gold as outdated — a relic from a pre-digital era. That talking point is now at odds with the behavior: in 2025 alone, central banks bought over one thousand tons of it. The pivot has three drivers.</p>
+      <p>First, de-dollarization — nations reducing exposure to the U.S. dollar and the foreign policy that rides with it. Second, sanctions risk: after $300 billion of Russian reserves were frozen in 2022, every other central bank saw what a button press could do. Gold in a vault cannot be deleted. Third, debt — U.S. obligations approaching $40 trillion, growing by a trillion every hundred days. Hedging the paper experiment is no longer fringe.</p>
+    </div>
+    <aside class="ch-aside" data-label="THE DRIVERS">
+      <div class="stat">1,000+</div>
+      <div class="stat-label">Tons bought by central banks in 2025</div>
+      <h4>Why They're Buying</h4>
+      <ul>
+        <li>De-dollarization strategy</li>
+        <li>Sanctions immunity (post-2022 Russia)</li>
+        <li>Hedge against $40T U.S. debt load</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="chapter">
+    <div class="ch-num">06<span class="slash">Silver's Role</span></div>
+    <div class="ch-body">
+      <span class="ch-tag">The Ratio</span>
+      <h3>Silver is money with a day job.</h3>
+      <p>Gold is monetary. Silver is monetary and industrial. Solar panels, electronics, medical devices — silver gets consumed in ways gold never does, which creates a different kind of demand floor underneath it. The gold-to-silver ratio, currently hovering around 62, is a standard gauge: high numbers suggest silver is historically cheap relative to gold, low numbers the reverse.</p>
+      <p>For an investor building financial insurance, silver rides alongside gold as a secondary position — more volatile, more industrially exposed, but with a similar underlying thesis: it's physical, it's scarce, and it cannot be printed into existence by a committee in Washington.</p>
+    </div>
+    <aside class="ch-aside" data-label="THE RATIO">
+      <div class="stat">≈62</div>
+      <div class="stat-label">Gold-to-silver ratio (current)</div>
+      <h4>Silver's Demand Drivers</h4>
+      <ul>
+        <li>Solar panel manufacturing</li>
+        <li>Electronics and semiconductors</li>
+        <li>Medical and antimicrobial uses</li>
+        <li>Monetary / store of value</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <blockquote>Currency decline happens <em>slowly</em>, and then all at <em>once</em>.</blockquote>
+    <cite>— The pattern, stated plainly</cite>
+  </div>
+
+  <!-- COMPARISON -->
+  <section class="compare">
+    <div class="section-rule"><span>Side by Side · The Ledger</span></div>
+    <div class="compare-head">
+      <h2>Gold vs. <em>paper</em>.</h2>
+      <p>Two forms of money, two different physics. One is constrained by the earth. The other is constrained by a printer — which is to say, not at all.</p>
+    </div>
+    <div class="compare-table">
+      <div class="row-label">Feature</div>
+      <div class="header-row gold-h">Gold · Money</div>
+      <div class="header-row fiat-h">Fiat · Paper/Digital</div>
+
+      <div class="row-label">Supply</div>
+      <div class="gold-col">Limited by nature. Scarce by physics.</div>
+      <div class="fiat-col">Unlimited. Can be printed at will.</div>
+
+      <div class="row-label">Durability</div>
+      <div class="gold-col">Does not corrode, tarnish, or decay.</div>
+      <div class="fiat-col">Subject to policy decisions and inflation.</div>
+
+      <div class="row-label">Track Record</div>
+      <div class="gold-col">5,000 years as money across civilizations.</div>
+      <div class="fiat-col">54 years as a global experiment.</div>
+
+      <div class="row-label">Function</div>
+      <div class="gold-col">Store of value. A lie detector on currency.</div>
+      <div class="fiat-col">Medium of exchange. A government promise.</div>
+
+      <div class="row-label">Printability</div>
+      <div class="gold-col">None. Cannot be created in a lab.</div>
+      <div class="fiat-col">Infinite. 40% of all USD printed in 18 months.</div>
+
+      <div class="row-label">Counterparty Risk</div>
+      <div class="gold-col">None. Physical bearer asset.</div>
+      <div class="fiat-col">Yes. Can be frozen, sanctioned, or devalued.</div>
+    </div>
+  </section>
+
+  <!-- IMPLEMENTATION -->
+  <section class="implement">
+    <div class="section-rule"><span>Implementation · How to Own It</span></div>
+    <div class="implement-head">
+      <h2>5% to 15% as <em>insurance</em>.</h2>
+      <p>Gold isn't meant to be the portfolio — it's meant to be the hedge underneath it. Most practitioners run a 5-to-15% allocation, split across some combination of three vehicles, each with a different tradeoff.</p>
+    </div>
+    <div class="impl-grid">
+      <div class="impl-card" data-num="01">
+        <h4>Physical</h4>
+        <div class="sub">Coins &amp; Bars</div>
+        <p>Total control, no counterparty. Store it, insure it, hold it in your hand. The only version that truly cannot be frozen, deleted, or revalued by policy.</p>
+        <div class="meta">
+          <span class="good">+ Zero counterparty</span>
+          <span class="bad">— Storage burden</span>
+        </div>
+      </div>
+      <div class="impl-card" data-num="02">
+        <h4>ETFs</h4>
+        <div class="sub">GLD · IAU</div>
+        <p>Liquid, cheap, tradeable from any brokerage account. You're trusting a financial institution to hold the metal on your behalf — a real tradeoff against the physical version.</p>
+        <div class="meta">
+          <span class="good">+ Liquid &amp; cheap</span>
+          <span class="bad">— Institutional trust required</span>
+        </div>
+      </div>
+      <div class="impl-card" data-num="03">
+        <h4>Miners</h4>
+        <div class="sub">Equity Plays</div>
+        <p>Leveraged exposure to the gold price through the operating companies. When gold moves, well-run miners move further — but the downside cuts the same way.</p>
+        <div class="meta">
+          <span class="good">+ Leveraged upside</span>
+          <span class="bad">— Operational + market risk</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <h3>Gold is the 5,000-year <em>lie detector</em>. It doesn't care about politics. It just tells the truth.</h3>
+      <div class="mono" style="font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(14,11,7,0.7); text-align: right;">
+        End of Issue<br>
+        <span style="color: var(--bg-2);">01 / 08 / 06</span>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>Real Money</span>
+      <span>A Monetary Primer · 2026</span>
+      <span>Set in Fraunces &amp; JetBrains Mono</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
