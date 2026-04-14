@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Top 1% Playbook — Wealth Moves Most People Never See</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f3efe6;
+    --paper-dark: #e9e3d4;
+    --ink: #14180f;
+    --ink-soft: #2a2f22;
+    --muted: #6d6a5a;
+    --green: #1e5631;
+    --green-bright: #2d7a46;
+    --accent: #b8862b;
+    --rule: #14180f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(30, 86, 49, 0.05) 0, transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(184, 134, 43, 0.05) 0, transparent 45%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+    z-index: 100;
+    mix-blend-mode: multiply;
+  }
+  .mono { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+  /* MASTHEAD */
+  header.masthead {
+    border-bottom: 3px double var(--rule);
+    padding: 20px 0 16px;
+  }
+  .mast-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--muted);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(20, 24, 15, 0.2);
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mast-title {
+    font-size: clamp(56px, 12vw, 164px);
+    font-weight: 900;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+    font-style: italic;
+  }
+  .mast-title em { font-style: normal; color: var(--green); }
+  .mast-sub {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 14px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* HERO */
+  .hero { padding: 80px 0 60px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
+  .hero-kicker {
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero h2 {
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.02;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .hero h2 em { color: var(--green); font-style: italic; }
+  .hero-lede {
+    font-size: 18px; line-height: 1.65; color: var(--ink);
+    max-width: 460px;
+    padding-left: 28px;
+    border-left: 2px solid var(--green);
+  }
+  .hero-lede::first-letter {
+    font-size: 52px; float: left; line-height: 0.9; padding: 4px 10px 0 0;
+    font-weight: 900; color: var(--green); font-style: italic;
+  }
+
+  /* PHASE HEADER */
+  .phase {
+    padding: 80px 0 20px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    align-items: end;
+    border-top: 3px double var(--rule);
+    margin-top: 40px;
+  }
+  .phase-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--green); padding-top: 12px;
+  }
+  .phase-num strong {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 80px; font-weight: 900; font-style: italic;
+    color: var(--ink); line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+    margin-top: 8px;
+  }
+  .phase h2 {
+    font-size: clamp(36px, 4.5vw, 60px);
+    line-height: 0.98; font-weight: 600;
+    letter-spacing: -0.025em;
+    max-width: 18ch;
+  }
+  .phase h2 em { color: var(--green); font-style: italic; }
+  .phase-sub {
+    font-size: 16px; line-height: 1.6; color: var(--muted);
+    max-width: 52ch; margin-top: 16px;
+  }
+
+  /* MOVES */
+  .move {
+    display: grid;
+    grid-template-columns: 160px 1fr 360px;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(20, 24, 15, 0.2);
+    align-items: start;
+  }
+  .move-num {
+    font-size: 120px;
+    font-weight: 900;
+    line-height: 0.8;
+    font-style: italic;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.05em;
+    color: var(--ink);
+    position: sticky; top: 20px;
+  }
+  .move-num .slash {
+    display: block; font-size: 11px; font-style: normal; font-weight: 400;
+    font-family: 'JetBrains Mono', monospace; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--muted); margin-top: 12px;
+  }
+  .move-body h3 {
+    font-size: 44px; font-weight: 600; line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .move-tag {
+    display: inline-block; font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 4px 10px; border: 1px solid var(--green); margin-bottom: 20px;
+    color: var(--green);
+  }
+  .move-body p {
+    font-size: 17px; line-height: 1.7; margin-bottom: 16px;
+    max-width: 58ch;
+  }
+  .move-aside {
+    background: var(--paper-dark);
+    padding: 28px 28px 32px;
+    border: 1px solid var(--ink);
+    position: relative;
+  }
+  .move-aside::before {
+    content: attr(data-label);
+    position: absolute; top: -10px; left: 20px;
+    background: var(--paper);
+    padding: 0 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+  }
+  .move-aside h4 {
+    font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 14px; color: var(--green); font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .move-aside ul { list-style: none; }
+  .move-aside li {
+    font-size: 15px; line-height: 1.55; padding: 10px 0;
+    border-top: 1px dashed rgba(20, 24, 15, 0.25);
+    display: flex; gap: 12px;
+  }
+  .move-aside li:first-of-type { border-top: none; padding-top: 0; }
+  .move-aside li::before {
+    content: '▸'; color: var(--green); font-weight: 700; flex-shrink: 0;
+  }
+  .move-aside .stat {
+    font-size: 44px; font-weight: 900; font-style: italic;
+    color: var(--green); line-height: 1;
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 4px;
+  }
+  .move-aside .stat-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 18px;
+  }
+
+  /* FEATURED DARK MOVE */
+  .move.featured {
+    background: var(--ink); color: var(--paper);
+    margin: 32px -32px;
+    padding: 56px 32px;
+  }
+  .move.featured .move-num { color: var(--accent); }
+  .move.featured .move-num .slash { color: rgba(243, 239, 230, 0.5); }
+  .move.featured .move-tag { border-color: var(--accent); color: var(--accent); }
+  .move.featured .move-aside {
+    background: transparent; border-color: var(--paper);
+  }
+  .move.featured .move-aside::before { background: var(--ink); color: var(--accent); }
+  .move.featured .move-aside h4 { color: var(--accent); }
+  .move.featured .move-aside li { border-color: rgba(243, 239, 230, 0.2); }
+  .move.featured .move-aside li::before { color: var(--accent); }
+  .move.featured .move-aside .stat { color: var(--accent); }
+
+  /* PULL QUOTE */
+  .pullquote {
+    margin: 80px 0;
+    padding: 60px 0;
+    border-top: 3px double var(--rule);
+    border-bottom: 3px double var(--rule);
+    text-align: center;
+  }
+  .pullquote blockquote {
+    font-size: clamp(28px, 4vw, 50px);
+    font-style: italic; font-weight: 400; line-height: 1.12;
+    letter-spacing: -0.015em;
+    max-width: 920px; margin: 0 auto;
+    font-variation-settings: "opsz" 144;
+  }
+  .pullquote blockquote em { color: var(--green); }
+  .pullquote cite {
+    display: block; margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted); font-style: normal;
+  }
+
+  /* MINDSET GRID */
+  .mindset { padding: 60px 0 80px; }
+  .mindset-head { margin-bottom: 40px; max-width: 780px; }
+  .mindset-head h2 {
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 0.95; font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .mindset-head h2 em { color: var(--green); font-style: italic; }
+  .mindset-head p {
+    font-size: 17px; line-height: 1.65; color: var(--muted);
+    max-width: 56ch; margin-top: 20px;
+  }
+  .mindset-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .mindset-row {
+    display: contents;
+  }
+  .mindset-cell {
+    padding: 28px 24px;
+    border-bottom: 1px solid rgba(20, 24, 15, 0.2);
+    font-size: 17px; line-height: 1.5;
+  }
+  .mindset-row:last-child .mindset-cell { border-bottom: none; }
+  .mindset-cell.crowd {
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(184, 134, 43, 0.6);
+    text-decoration-thickness: 2px;
+  }
+  .mindset-cell.one {
+    background: var(--paper-dark);
+    border-left: 2px solid var(--green);
+    font-weight: 600;
+  }
+  .mindset-heading {
+    display: contents;
+  }
+  .mindset-heading .mindset-cell {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 24px;
+    background: transparent;
+    text-decoration: none;
+    font-weight: normal;
+  }
+  .mindset-heading .one { color: var(--green); }
+
+  /* CLOSING CALLOUT */
+  .closing {
+    background: var(--green);
+    color: var(--paper);
+    margin: 80px -32px 0;
+    padding: 80px 32px;
+    position: relative;
+  }
+  .closing-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    max-width: 1216px; margin: 0 auto;
+  }
+  .closing .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(243, 239, 230, 0.7); margin-bottom: 20px;
+  }
+  .closing h2 {
+    font-size: clamp(36px, 4.5vw, 56px);
+    line-height: 1; font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .closing h2 em { color: var(--accent); font-style: italic; }
+  .closing p {
+    font-size: 17px; line-height: 1.7;
+    color: rgba(243, 239, 230, 0.9);
+    max-width: 48ch;
+  }
+  .closing p + p { margin-top: 16px; }
+  .closing .big-stat {
+    font-size: clamp(72px, 10vw, 120px);
+    font-weight: 900; font-style: italic; line-height: 0.95;
+    letter-spacing: -0.04em; color: var(--accent);
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 16px;
+  }
+  .closing .big-stat-cap {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: rgba(243, 239, 230, 0.7);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 60px 0 30px;
+  }
+  .foot-top {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(243, 239, 230, 0.2);
+  }
+  .foot-top h3 {
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1; font-weight: 600; letter-spacing: -0.02em;
+    max-width: 680px;
+  }
+  .foot-top h3 em { color: var(--accent); font-style: italic; }
+  .foot-bot {
+    display: flex; justify-content: space-between; padding-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: rgba(243, 239, 230, 0.6);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .closing-grid, .phase { grid-template-columns: 1fr; gap: 24px; }
+    .move { grid-template-columns: 1fr; gap: 24px; }
+    .move-num { font-size: 88px; position: static; }
+    .move-body h3 { font-size: 32px; }
+    .move.featured, .closing { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+    .mindset-grid { grid-template-columns: 1fr; }
+    .mindset-heading .mindset-cell:first-child { display: none; }
+    .mindset-cell.crowd { border-left: 2px solid var(--accent); }
+    .container { padding: 0 20px; }
+    .foot-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-top">
+      <span>Vol. I &nbsp;·&nbsp; No. 09</span>
+      <span>A Wealth Playbook</span>
+      <span>April 2026</span>
+    </div>
+    <h1 class="mast-title">Top 1<em>%</em></h1>
+    <div class="mast-sub">
+      <span>Ten moves most people never see</span>
+      <span>$0 — free to read</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-kicker">The Playbook — 08 min read</div>
+      <h2>Rich people don't just have more money. They <em>move</em> differently.</h2>
+    </div>
+    <p class="hero-lede">
+      Wealth is a game of rules, and the wealthy know more of them. Not because the rules are secret — they're in the tax code, they're on estate attorneys' websites, they're discussed openly at the right dinners. The gap is in who builds a system around them. What follows is ten moves, organized into four phases, that separate the top 1% from everyone still trading hours for a paycheck.
+    </p>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- PHASE 1 -->
+  <section class="phase">
+    <div class="phase-num">Phase 01 <strong>Income<br>&amp; Assets</strong></div>
+    <div>
+      <h2>Build the <em>ecosystem</em>.</h2>
+      <p class="phase-sub">Before anything else changes, the source of money changes. A single paycheck becomes seven streams. Earned income becomes ownership. Debt stops being the enemy and starts being a tool.</p>
+    </div>
+  </section>
+
+  <article class="move">
+    <div class="move-num">01<span class="slash">Move / Income Streams</span></div>
+    <div class="move-body">
+      <span class="move-tag">The Fortress</span>
+      <h3>Seven streams, not one.</h3>
+      <p>The average millionaire runs roughly seven distinct sources of income — dividends, capital gains, consulting, rental income, royalties, interest, business distributions. The arithmetic is protective. When one stream slows, the others keep the system alive. The goal isn't to juggle seven hustles; it's to build a financial ecosystem that doesn't collapse if any single line goes quiet.</p>
+    </div>
+    <aside class="move-aside" data-label="TYPICAL MIX">
+      <div class="stat">7</div>
+      <div class="stat-label">Streams, avg. millionaire</div>
+      <h4>Common Sources</h4>
+      <ul>
+        <li>Earned (salary / consulting)</li>
+        <li>Business distributions</li>
+        <li>Rental / real estate income</li>
+        <li>Dividends from equities</li>
+        <li>Capital gains on sales</li>
+        <li>Interest-bearing instruments</li>
+        <li>Royalties / licensing / IP</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move">
+    <div class="move-num">02<span class="slash">Move / Ownership</span></div>
+    <div class="move-body">
+      <span class="move-tag">Assets Over Income</span>
+      <h3>Chase ownership, not raises.</h3>
+      <p>Earned income is the most heavily taxed money you'll ever touch. It requires your time and energy to produce, and it stops the moment you do. Assets — businesses, real estate, equities, intellectual property — grow quietly in the background with tax advantages baked in. The mental shift is simple: every dollar that comes in gets evaluated for what else it can produce. Consumption gets a smaller slice. Ownership gets the rest.</p>
+    </div>
+    <aside class="move-aside" data-label="THE SHIFT">
+      <h4>What Changes</h4>
+      <ul>
+        <li>Salary → business distributions</li>
+        <li>Savings account → income-producing assets</li>
+        <li>Consumer purchases → ownership stakes</li>
+        <li>Measuring income → measuring net worth</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move featured">
+    <div class="move-num">03<span class="slash">Move / Leverage</span></div>
+    <div class="move-body">
+      <span class="move-tag">Other People's Money</span>
+      <h3>Debt isn't danger. It's a tool.</h3>
+      <p>The wealthy don't fear debt — they price it. Strategic debt lets you control a larger asset with less of your own capital, preserving liquidity for the next opportunity. The discipline is in the math: borrowed funds must generate more than the cost of borrowing, every time. No emotional purchases. No impulse leverage. Terms get negotiated, returns get modeled, and nothing gets signed until the spread is clearly positive.</p>
+    </div>
+    <aside class="move-aside" data-label="THE TEST">
+      <h4>Before Borrowing</h4>
+      <ul>
+        <li>Will the asset generate more than the rate?</li>
+        <li>Can cash flow cover the payment alone?</li>
+        <li>What's the downside scenario?</li>
+        <li>Are the terms genuinely negotiated?</li>
+        <li>Does this preserve liquidity for the next move?</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- PHASE 2 -->
+  <section class="phase">
+    <div class="phase-num">Phase 02 <strong>Tax<br>Strategy</strong></div>
+    <div>
+      <h2>Keep what you <em>earn</em>.</h2>
+      <p class="phase-sub">Taxes are the single largest expense most high earners will ever have. Proactive planning — not April scrambling — is how the wealthy convert that expense into reinvestable capital.</p>
+    </div>
+  </section>
+
+  <article class="move">
+    <div class="move-num">04<span class="slash">Move / Family Payroll</span></div>
+    <div class="move-body">
+      <span class="move-tag">Family on Payroll</span>
+      <h3>Hire the kids. Legally.</h3>
+      <p>Instead of handing out allowances from already-taxed income, wealthy business owners put children and spouses on payroll for real work at reasonable rates. The tax arithmetic is better, the compensation is legitimately deductible, and the money can flow into Roth IRAs or education accounts to compound for decades. The side benefit is cultural — kids grow up understanding payroll, responsibility, and that money tracks value created.</p>
+    </div>
+    <aside class="move-aside" data-label="THE PLAY">
+      <h4>What It Unlocks</h4>
+      <ul>
+        <li>Deductible business expense</li>
+        <li>Income shifted to lower tax bracket</li>
+        <li>Roth IRA contributions in child's name</li>
+        <li>Education savings account funding</li>
+        <li>Multi-decade compounding runway</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move">
+    <div class="move-num">05<span class="slash">Move / Offsets</span></div>
+    <div class="move-body">
+      <span class="move-tag">Depreciation as Shield</span>
+      <h3>Offset W2 and 1099 income.</h3>
+      <p>High earners use business losses — specifically depreciation on real estate and equipment — to offset tax exposure from W2 salary and 1099 consulting income alike. The leverage isn't just the deduction; it's the timing. Income gets tracked quarterly, projections get updated continuously, and deductions get accelerated into the years they matter most. Tax season is the scoreboard, not the strategy meeting.</p>
+    </div>
+    <aside class="move-aside" data-label="THE CADENCE">
+      <h4>Quarterly Rhythm</h4>
+      <ul>
+        <li>Track income vs. projections</li>
+        <li>Identify deduction opportunities early</li>
+        <li>Accelerate depreciation strategically</li>
+        <li>Adjust withholdings and estimates</li>
+        <li>Reinvest preserved capital in Q4</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move">
+    <div class="move-num">06<span class="slash">Move / Household Unit</span></div>
+    <div class="move-body">
+      <span class="move-tag">Spousal Strategy</span>
+      <h3>Run the household as one financial unit.</h3>
+      <p>The single largest tax move for a dual-income household is often Real Estate Professional status — qualifying one spouse through material participation in real estate activities, which unlocks the ability to use real estate losses against the other spouse's active income. It requires intentional role-structuring, honest documentation, and regular communication about goals. Treated seriously, it turns a household into a coordinated financial enterprise rather than two separate tax returns living in the same house.</p>
+    </div>
+    <aside class="move-aside" data-label="THE MECHANICS">
+      <h4>What It Takes</h4>
+      <ul>
+        <li>Intentional role assignment</li>
+        <li>Material participation documentation</li>
+        <li>Quarterly alignment on income / deductions</li>
+        <li>Shared view of risk tolerance</li>
+        <li>Verify current IRS hour thresholds separately</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- PULL QUOTE -->
+  <div class="pullquote">
+    <blockquote>Every dollar earned gets evaluated for its potential to <em>produce more dollars</em>.</blockquote>
+    <cite>— The operating rule</cite>
+  </div>
+
+  <!-- PHASE 3 -->
+  <section class="phase">
+    <div class="phase-num">Phase 03 <strong>Execution<br>&amp; Network</strong></div>
+    <div>
+      <h2>Move, <em>and</em> move in the right rooms.</h2>
+      <p class="phase-sub">Strategy without execution is a hobby. The top 1% are decisive, networked, and allergic to doing things they could delegate to someone better.</p>
+    </div>
+  </section>
+
+  <article class="move">
+    <div class="move-num">07<span class="slash">Move / Decisiveness</span></div>
+    <div class="move-body">
+      <span class="move-tag">Bias to Action</span>
+      <h3>Inaction is the expensive option.</h3>
+      <p>Most people treat indecision as safe. The wealthy treat it as the most expensive choice on the menu. Because they've already defined their risk tolerance, investment criteria, and target outcomes, evaluating an opportunity takes hours, not weeks. A well-managed mistake can be corrected. A missed opportunity rarely comes back. Decisiveness compounds the same way money does — small edges, repeated.</p>
+    </div>
+    <aside class="move-aside" data-label="WHAT ENABLES IT">
+      <h4>Preconditions</h4>
+      <ul>
+        <li>Written investment criteria</li>
+        <li>Defined risk tolerance by category</li>
+        <li>Pre-vetted advisor bench</li>
+        <li>Capital positioned for deployment</li>
+        <li>Clear "no" defaults for out-of-thesis deals</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move">
+    <div class="move-num">08<span class="slash">Move / Access</span></div>
+    <div class="move-body">
+      <span class="move-tag">Rooms That Matter</span>
+      <h3>Network is net worth.</h3>
+      <p>Off-market deals, joint ventures, early-look investments — none of it is posted publicly. It moves through relationships, and relationships form in rooms the general public isn't in. The wealthy invest in conference seats, mastermind memberships, and deliberate one-on-one time the way most people invest in stocks. The rule of entry: show up to provide value first. Transactional energy reads across the room instantly and closes doors permanently.</p>
+    </div>
+    <aside class="move-aside" data-label="THE PRINCIPLE">
+      <h4>What Works</h4>
+      <ul>
+        <li>Show up with something to contribute</li>
+        <li>Track warm intros owed and given</li>
+        <li>Pay for proximity; it's the cheapest capital</li>
+        <li>Build thin relationships into real ones over time</li>
+        <li>Never lead with an ask</li>
+      </ul>
+    </aside>
+  </article>
+
+  <article class="move">
+    <div class="move-num">09<span class="slash">Move / Team Build</span></div>
+    <div class="move-body">
+      <span class="move-tag">Complementary Skill Sets</span>
+      <h3>Ego is expensive. Specialists are cheap.</h3>
+      <p>Trying to master everything is the most common way intelligent people stay small. The wealthy build a bench — tax strategist, estate attorney, CPA, operators for specific verticals, a real estate broker who actually returns calls — and delegate the details aggressively. The time freed up goes into the few decisions only the principal can make. Scale follows, because you stop being the bottleneck in your own life.</p>
+    </div>
+    <aside class="move-aside" data-label="THE BENCH">
+      <h4>Common Roster</h4>
+      <ul>
+        <li>CPA with proactive planning focus</li>
+        <li>Estate / trust attorney</li>
+        <li>Tax strategist (separate from CPA)</li>
+        <li>Commercial real estate broker</li>
+        <li>Investment advisor / RIA</li>
+        <li>Insurance and asset protection specialist</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- PHASE 4 -->
+  <section class="phase">
+    <div class="phase-num">Phase 04 <strong>Preservation<br>&amp; Legacy</strong></div>
+    <div>
+      <h2>Build it to <em>outlast</em> you.</h2>
+      <p class="phase-sub">Wealth that doesn't survive the founder was never really wealth — it was a high income stream with an expiration date. Structure is how you make it permanent.</p>
+    </div>
+  </section>
+
+  <article class="move featured">
+    <div class="move-num">10<span class="slash">Move / Structure</span></div>
+    <div class="move-body">
+      <span class="move-tag">Trust Structures</span>
+      <h3>Wrap the assets. Shield the legacy.</h3>
+      <p>Trusts do three things well: they shield assets from unnecessary exposure, they minimize estate taxes, and they keep the whole operation out of probate — which is both slow and public. Done properly, they also provide continuity. The plan doesn't die with the principal; it executes. For anyone with serious assets, moving to a trust-based estate structure isn't exotic — it's table stakes.</p>
+    </div>
+    <aside class="move-aside" data-label="WHY IT MATTERS">
+      <h4>What Trusts Do</h4>
+      <ul>
+        <li>Protect assets from probate exposure</li>
+        <li>Reduce estate tax burden</li>
+        <li>Maintain privacy of holdings</li>
+        <li>Continuity across generations</li>
+        <li>Control of distribution terms</li>
+      </ul>
+    </aside>
+  </article>
+
+  <!-- MINDSET GRID -->
+  <section class="mindset">
+    <div class="mindset-head">
+      <h2>How the <em>crowd</em> thinks vs. how the <em>1%</em> thinks.</h2>
+      <p>The tactics above are downstream of a handful of mental shifts. The shifts come first; the moves follow.</p>
+    </div>
+    <div class="mindset-grid">
+      <div class="mindset-heading">
+        <div class="mindset-cell">The Crowd</div>
+        <div class="mindset-cell one">The 1%</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Earn more to spend more.</div>
+        <div class="mindset-cell one">Earn more to own more.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Debt is dangerous, avoid it.</div>
+        <div class="mindset-cell one">Strategic debt controls bigger assets.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">File taxes once a year.</div>
+        <div class="mindset-cell one">Plan taxes every quarter.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Do it yourself to save money.</div>
+        <div class="mindset-cell one">Hire specialists to make money.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Deliberate until certain.</div>
+        <div class="mindset-cell one">Decide when criteria are met.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Network when you need something.</div>
+        <div class="mindset-cell one">Network before you need anything.</div>
+      </div>
+      <div class="mindset-row">
+        <div class="mindset-cell crowd">Pass assets through a will.</div>
+        <div class="mindset-cell one">Structure assets in trusts.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- CLOSING CALLOUT -->
+<section class="closing">
+  <div class="closing-grid">
+    <div>
+      <div class="kicker">For High Earners — $300K+</div>
+      <h2>At this level, basic compliance isn't a <em>plan</em> — it's a tax bill.</h2>
+      <p style="margin-top: 28px;">Once income crosses a certain threshold, standard tax prep stops being adequate. The difference between reactive filing and proactive strategy can run into six figures annually, which is the difference between reinvesting that capital into more assets or handing it over.</p>
+      <p>Specialized firms exist for this reason. The threshold for using one isn't prestige — it's arithmetic. If your strategy fee is a fraction of your tax savings, you've already made the decision.</p>
+    </div>
+    <div>
+      <div class="big-stat">50–100%</div>
+      <div class="big-stat-cap">Potential tax liability reduction with advanced strategy</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <h3>The wealthy don't work <em>harder</em>. They work through a <em>different operating system</em>.</h3>
+      <div class="mono" style="font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(243, 239, 230, 0.6); text-align: right;">
+        End of Issue<br>
+        <span style="color: var(--accent);">01 / 09 / 10</span>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>The Top 1% Playbook</span>
+      <span>A Wealth Primer · 2026</span>
+      <span>Set in Fraunces &amp; JetBrains Mono</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
