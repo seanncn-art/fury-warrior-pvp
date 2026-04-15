@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Real Money</title>
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HDXDN7VXE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-8HDXDN7VXE');
-  </script>
-
-</head>
-<body>
-
-<h1>Real Money</h1>
-
-</body>
-</html>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8HDXDN7VXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8HDXDN7VXE');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Real Money — Gold & The 5,000 Year Lie Detector</title>
@@ -84,16 +69,17 @@
   .mast-title {
     font-size: clamp(56px, 12vw, 164px);
     font-weight: 900;
-    line-height: 0.85;
+    line-height: 0.95;
     letter-spacing: -0.04em;
     font-variation-settings: "opsz" 144;
     font-style: italic;
     color: var(--ink);
+    padding-bottom: 20px;
   }
   .mast-title em { font-style: normal; color: var(--gold); }
   .mast-sub {
     display: flex; justify-content: space-between; align-items: baseline;
-    margin-top: 14px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-top: 24px; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--ink-dim);
     font-family: 'JetBrains Mono', monospace;
   }
@@ -152,11 +138,13 @@
     letter-spacing: -0.05em;
     color: var(--gold);
     position: sticky; top: 20px;
+    display: block;
   }
   .ch-num .slash {
     display: block; font-size: 11px; font-style: normal; font-weight: 400;
     font-family: 'JetBrains Mono', monospace; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--ink-dim); margin-top: 12px;
+    text-transform: uppercase; color: var(--ink-dim); margin-top: 16px;
+    line-height: 1.4;
   }
   .ch-body h3 {
     font-size: 48px; font-weight: 600; line-height: 0.98;
