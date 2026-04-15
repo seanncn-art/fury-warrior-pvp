@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawaiian Fury Warrior — Discipline. Wealth. Performance.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a07;
+    --bg-2: #171310;
+    --ink: #f0e4cd;
+    --ink-soft: #c5b59a;
+    --muted: #6e6552;
+    --red: #a8321a;
+    --red-bright: #c94728;
+    --gold: #c99a3a;
+    --green: #4a7f5a;
+    --paper: #ede4d0;
+    --rule: #f0e4cd;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(168, 50, 26, 0.1) 0, transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(201, 154, 58, 0.08) 0, transparent 50%);
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    z-index: 100;
+    mix-blend-mode: overlay;
+  }
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
+
+  /* NAV */
+  nav.topnav {
+    border-bottom: 1px solid rgba(240, 228, 205, 0.15);
+    padding: 20px 0;
+    position: sticky; top: 0;
+    background: rgba(13, 10, 7, 0.92);
+    backdrop-filter: blur(12px);
+    z-index: 50;
+  }
+  .nav-wrap {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .nav-brand { color: var(--red-bright); font-weight: 500; }
+  .nav-brand span { color: var(--ink-soft); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--ink-soft); text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--red-bright); }
+  .nav-links a.active { color: var(--ink); }
+  .nav-links a.active::after {
+    content: ''; position: absolute;
+    bottom: -8px; left: 0; right: 0;
+    height: 2px; background: var(--red-bright);
+  }
+
+  /* MASTHEAD */
+  header.masthead {
+    border-bottom: 3px double var(--red);
+    padding: 28px 0 20px;
+  }
+  .mast-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.25em;
+    color: var(--ink-soft);
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(240, 228, 205, 0.15);
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .mast-title {
+    font-size: clamp(48px, 10vw, 140px);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-variation-settings: "opsz" 144;
+    font-style: italic;
+    padding-bottom: 20px;
+  }
+  .mast-title em { font-style: normal; color: var(--red-bright); }
+  .mast-sub {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 24px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 80px;
+    border-bottom: 1px solid rgba(240, 228, 205, 0.15);
+    position: relative;
+  }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 80px; align-items: end; }
+  .hero-kicker {
+    font-size: 12px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--red-bright); margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .hero h2 {
+    font-size: clamp(42px, 6vw, 88px);
+    line-height: 0.98;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h2 em { color: var(--red-bright); font-style: italic; }
+  .hero h2 .gold-em { color: var(--gold); font-style: italic; }
+  .hero-lede {
+    font-size: 19px; line-height: 1.65; color: var(--ink);
+    max-width: 480px;
+    padding-left: 28px;
+    border-left: 2px solid var(--red-bright);
+  }
+  .hero-lede::first-letter {
+    font-size: 56px; float: left; line-height: 0.9; padding: 4px 10px 0 0;
+    font-weight: 900; color: var(--red-bright); font-style: italic;
+  }
+
+  /* CREED STRIP */
+  .creed {
+    background: var(--red);
+    color: var(--paper);
+    margin: 0 -32px;
+    padding: 48px 32px;
+  }
+  .creed-inner {
+    max-width: 1320px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 2fr; gap: 48px;
+    align-items: center;
+  }
+  .creed .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: rgba(237, 228, 208, 0.7);
+    margin-bottom: 12px;
+  }
+  .creed h3 {
+    font-size: clamp(28px, 3vw, 38px);
+    font-weight: 600; font-style: italic;
+    line-height: 1.05; letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 144;
+  }
+  .creed-points {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    font-size: 17px; line-height: 1.4;
+    padding-left: 48px;
+    border-left: 1px solid rgba(237, 228, 208, 0.25);
+  }
+  .creed-points div strong {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  /* SECTION RULE */
+  .section-rule {
+    display: flex; align-items: center; gap: 16px; padding: 80px 0 36px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.3em; color: var(--ink-soft);
+  }
+  .section-rule::before, .section-rule::after {
+    content: ''; flex: 1; height: 1px; background: var(--ink); opacity: 0.2;
+  }
+
+  /* EXPLORE */
+  .explore-head {
+    margin-bottom: 48px;
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: end;
+  }
+  .explore-head h2 {
+    font-size: clamp(44px, 6vw, 84px);
+    line-height: 0.95; font-weight: 600;
+    letter-spacing: -0.03em;
+    max-width: 15ch;
+  }
+  .explore-head h2 em { color: var(--red-bright); font-style: italic; }
+  .explore-head p {
+    font-size: 17px; line-height: 1.65; color: var(--ink-soft);
+    max-width: 48ch;
+  }
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .pillar {
+    background: var(--bg-2);
+    border: 1px solid rgba(240, 228, 205, 0.15);
+    padding: 44px 40px 36px;
+    position: relative;
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    display: flex; flex-direction: column;
+    min-height: 360px;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
+    border-color: var(--pillar-color);
+    background: #1c1612;
+  }
+  .pillar.warrior { --pillar-color: var(--red-bright); }
+  .pillar.stack { --pillar-color: var(--gold); }
+  .pillar.money { --pillar-color: var(--green); }
+  .pillar.mindset { --pillar-color: #a88ec8; }
+
+  .pillar-num {
+    position: absolute;
+    top: 32px; right: 36px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em;
+    color: var(--muted);
+  }
+  .pillar-mark {
+    font-size: 52px;
+    font-style: italic; font-weight: 900;
+    font-variation-settings: "opsz" 144;
+    color: var(--pillar-color);
+    line-height: 1; letter-spacing: -0.04em;
+    margin-bottom: 24px;
+  }
+  .pillar h3 {
+    font-size: 44px;
+    font-weight: 600; letter-spacing: -0.02em;
+    line-height: 0.95;
+    margin-bottom: 8px;
+  }
+  .pillar .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--pillar-color);
+    margin-bottom: 20px;
+  }
+  .pillar p {
+    font-size: 16px; line-height: 1.6;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+  .pillar .enter {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--pillar-color);
+    font-weight: 500;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(240, 228, 205, 0.2);
+  }
+  .pillar .enter::after {
+    content: '→';
+    transition: transform 0.2s;
+  }
+  .pillar:hover .enter::after {
+    transform: translateX(6px);
+  }
+
+  /* MANIFESTO */
+  .manifesto {
+    margin: 40px 0;
+    padding: 80px 0;
+    border-top: 3px double var(--red);
+    border-bottom: 3px double var(--red);
+    text-align: center;
+  }
+  .manifesto blockquote {
+    font-size: clamp(32px, 5vw, 64px);
+    font-style: italic; font-weight: 400; line-height: 1.08;
+    letter-spacing: -0.02em;
+    max-width: 1000px; margin: 0 auto;
+    font-variation-settings: "opsz" 144;
+  }
+  .manifesto blockquote em { color: var(--red-bright); }
+  .manifesto cite {
+    display: block; margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ink-soft); font-style: normal;
+  }
+
+  /* PROJECTS */
+  .projects-head {
+    margin-bottom: 40px;
+  }
+  .projects-head h2 {
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 0.95; font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .projects-head h2 em { color: var(--gold); font-style: italic; }
+  .projects-head p {
+    font-size: 17px; line-height: 1.65; color: var(--ink-soft);
+    max-width: 56ch; margin-top: 20px;
+  }
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .proj {
+    border: 1px solid rgba(240, 228, 205, 0.15);
+    padding: 28px 24px 32px;
+    background: var(--bg-2);
+  }
+  .proj .status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+  .proj .status::before {
+    content: ''; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px rgba(74, 127, 90, 0.25);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .proj h4 {
+    font-size: 22px; font-weight: 600;
+    letter-spacing: -0.015em; line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .proj p {
+    font-size: 14px; line-height: 1.55;
+    color: var(--ink-soft);
+  }
+
+  /* WHY */
+  .why {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    padding: 40px 0;
+    align-items: start;
+  }
+  .why h2 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    line-height: 0.95; font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .why h2 em { color: var(--red-bright); font-style: italic; }
+  .why-body p {
+    font-size: 18px; line-height: 1.7; color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .why-body p:first-child::first-letter {
+    font-size: 52px; float: left; line-height: 0.9; padding: 4px 10px 0 0;
+    font-weight: 900; color: var(--gold); font-style: italic;
+  }
+  .why-principles {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(240, 228, 205, 0.2);
+    display: grid; gap: 16px;
+  }
+  .why-principles div {
+    display: flex; gap: 16px; align-items: baseline;
+  }
+  .why-principles .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: var(--red-bright);
+    min-width: 32px;
+  }
+  .why-principles .text {
+    font-size: 16px; line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-bright) 100%);
+    color: var(--paper);
+    margin: 80px -32px 0;
+    padding: 100px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.7' /%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+  }
+  .cta-inner {
+    max-width: 1100px; margin: 0 auto;
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+  .cta .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(237, 228, 208, 0.8);
+    margin-bottom: 28px;
+  }
+  .cta h2 {
+    font-size: clamp(44px, 6vw, 88px);
+    line-height: 0.95; font-weight: 600; font-style: italic;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144;
+  }
+  .cta h2 em { font-style: normal; color: #1a0d08; }
+  .cta p {
+    font-size: 19px; line-height: 1.5;
+    max-width: 580px; margin: 28px auto 0;
+    color: rgba(237, 228, 208, 0.9);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg-2); color: var(--ink);
+    padding: 60px 0 30px;
+    border-top: 1px solid rgba(240, 228, 205, 0.1);
+  }
+  .foot-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px; padding-bottom: 40px;
+    border-bottom: 1px solid rgba(240, 228, 205, 0.15);
+  }
+  .foot-grid h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--red-bright);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .foot-brand .brand-title {
+    font-size: 32px; font-style: italic; font-weight: 900;
+    letter-spacing: -0.02em; line-height: 1;
+    font-variation-settings: "opsz" 144;
+    margin-bottom: 12px;
+  }
+  .foot-brand .brand-title em { color: var(--red-bright); font-style: normal; }
+  .foot-brand p {
+    font-size: 14px; line-height: 1.5; color: var(--ink-soft);
+    max-width: 40ch;
+  }
+  .foot-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .foot-links a {
+    color: var(--ink); text-decoration: none;
+    font-size: 15px;
+    transition: color 0.2s;
+  }
+  .foot-links a:hover { color: var(--red-bright); }
+  .foot-bot {
+    display: flex; justify-content: space-between; padding-top: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .explore-head, .why, .creed-inner { grid-template-columns: 1fr; gap: 32px; }
+    .explore-grid, .proj-grid { grid-template-columns: 1fr; }
+    .creed-points { grid-template-columns: 1fr; padding-left: 0; padding-top: 24px; border-left: none; border-top: 1px solid rgba(237, 228, 208, 0.25); }
+    .container { padding: 0 20px; }
+    .creed, .cta { margin-left: -20px; margin-right: -20px; padding-left: 20px; padding-right: 20px; }
+    .foot-grid { grid-template-columns: 1fr; gap: 32px; }
+    .nav-links { gap: 20px; font-size: 10px; }
+    .nav-brand { font-size: 10px; }
+    .foot-bot { flex-direction: column; gap: 12px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="container nav-wrap">
+    <div class="nav-brand">Hawaiian <span>Fury Warrior</span></div>
+    <div class="nav-links">
+      <a href="/" class="active">Home</a>
+      <a href="/index.html">Warrior</a>
+      <a href="/the-stack.html">The Stack</a>
+      <a href="/real-money.html">Real Money</a>
+      <a href="/top-1-percent.html">Top 1%</a>
+    </div>
+  </div>
+</nav>
+
+<header class="masthead">
+  <div class="container">
+    <div class="mast-top">
+      <span>The Test Lab &nbsp;·&nbsp; Since 2026</span>
+      <span>Discipline · Wealth · Performance</span>
+      <span>Vegas / Hawaii</span>
+    </div>
+    <h1 class="mast-title">Hawaiian Fury <em>Warrior</em></h1>
+    <div class="mast-sub">
+      <span>Money, mindset, and performance — tested in real life</span>
+      <span>Free to read</span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-kicker">Start Here</div>
+      <h2>Discipline. <em>Wealth</em>. <span class="gold-em">Performance</span>.</h2>
+    </div>
+    <p class="hero-lede">
+      This site is where I put my money, my time, and my ego on the line — and write up what happened. Poke shop, gold, AI tools, Fury Warrior in the arena. If I'm doing it, it's on here. If it worked, I'll tell you. If it didn't, I'll tell you that too.
+    </p>
+  </div>
+</section>
+
+<div class="container">
+  <div class="creed">
+    <div class="creed-inner">
+      <div>
+        <div class="label">The Rules</div>
+        <h3>Not a blog. Not a course. A <em>test lab</em>.</h3>
+      </div>
+      <div class="creed-points">
+        <div><strong>01 / Build</strong>I build the thing. Business, site, portfolio, character.</div>
+        <div><strong>02 / Test</strong>I run it live. Real money, real fights, real stakes.</div>
+        <div><strong>03 / Track</strong>I post what happened. Wins and L's both.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-rule"><span>Explore · Four Pillars</span></div>
+
+  <div class="explore-head">
+    <h2>Pick a <em>lane</em>.</h2>
+    <p>Four things I care about. Four sections of the site. Start wherever — they all feed into each other anyway.</p>
+  </div>
+
+  <div class="explore-grid">
+
+    <a class="pillar warrior" href="/index.html">
+      <div class="pillar-num">01 / LANE</div>
+      <div class="pillar-mark">⚔</div>
+      <h3>Warrior</h3>
+      <div class="tag">WoW · Fury PvP</div>
+      <p>Fury Warrior PvP guide. Macros, talents, playstyle — the stuff I actually use in arena. If you play the spec, this is where you start.</p>
+      <span class="enter">Open the guide</span>
+    </a>
+
+    <a class="pillar stack" href="/the-stack.html">
+      <div class="pillar-num">02 / LANE</div>
+      <div class="pillar-mark">◈</div>
+      <h3>The Stack</h3>
+      <div class="tag">AI Tools</div>
+      <p>Seven AI tools I pay for, ranked worst to best. What each one is good at, what it's not, and which one I'd keep if I could only have one.</p>
+      <span class="enter">See the ranking</span>
+    </a>
+
+    <a class="pillar money" href="/real-money.html">
+      <div class="pillar-num">03 / LANE</div>
+      <div class="pillar-mark">§</div>
+      <h3>Real Money</h3>
+      <div class="tag">Gold · Hard Assets</div>
+      <p>Why gold is money and paper isn't. What the central banks are doing right now. How I'm positioning — and how much of it you might want.</p>
+      <span class="enter">Read the case</span>
+    </a>
+
+    <a class="pillar mindset" href="/top-1-percent.html">
+      <div class="pillar-num">04 / LANE</div>
+      <div class="pillar-mark">※</div>
+      <h3>Top 1%</h3>
+      <div class="tag">Wealth Moves</div>
+      <p>Ten things the wealthy do that nobody teaches in school. Tax strategy, ownership, leverage, trusts. Most of it is legal. All of it is doable.</p>
+      <span class="enter">See the playbook</span>
+    </a>
+
+  </div>
+
+  <div class="manifesto">
+    <blockquote>Everybody's got <em>opinions</em>. Almost nobody's got <em>results</em>.</blockquote>
+    <cite>— The difference</cite>
+  </div>
+
+  <div class="section-rule"><span>Currently In the Lab</span></div>
+
+  <div class="projects-head">
+    <h2>What I'm <em>working on</em>.</h2>
+    <p>Open experiments. Some will work, some won't. You'll find out either way.</p>
+  </div>
+
+  <div class="proj-grid">
+    <div class="proj">
+      <div class="status">Live</div>
+      <h4>Kawena &amp; Makoa Poke</h4>
+      <p>Hawaiian poke brand. Pop-up validated. Vegas storefront in the works.</p>
+    </div>
+    <div class="proj">
+      <div class="status">Live</div>
+      <h4>Income tests</h4>
+      <p>Side ventures, small bets, and whatever else looks like it might print money.</p>
+    </div>
+    <div class="proj">
+      <div class="status">Live</div>
+      <h4>Gold &amp; hard assets</h4>
+      <p>Tracking my allocation to physical metals and miners. The paper experiment looks shaky.</p>
+    </div>
+    <div class="proj">
+      <div class="status">Live</div>
+      <h4>Arena &amp; discipline</h4>
+      <p>Fury Warrior pushing rating. What training the game teaches me about training everything else.</p>
+    </div>
+  </div>
+
+  <section class="why">
+    <div>
+      <div class="section-rule" style="padding: 0 0 24px; justify-content: flex-start;"><span>Why Bother</span></div>
+      <h2>Because most of the internet is <em>talk</em>.</h2>
+    </div>
+    <div class="why-body">
+      <p>Most "advice" online is written by people who read about the thing instead of doing the thing. You can tell because the numbers never show up. The screenshots never show up. The L's never show up.</p>
+      <p>That's not what this is. I run the experiment. I post the receipts. If something tanked, I'll tell you what it cost me.</p>
+      <div class="why-principles">
+        <div><span class="num">01</span><span class="text">Do the thing.</span></div>
+        <div><span class="num">02</span><span class="text">Show the work.</span></div>
+        <div><span class="num">03</span><span class="text">Own the outcome.</span></div>
+        <div><span class="num">04</span><span class="text">Run it back better.</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<section class="cta">
+  <div class="cta-inner">
+    <div class="kicker">Stick Around</div>
+    <h2>If you're trying to level up — money, mindset, or <em>anything</em> — you're in the right place.</h2>
+    <p>New stuff gets posted when it's ready, not on a schedule. No email wall. No fake urgency. Just come back.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand-title">Hawaiian Fury <em>Warrior</em></div>
+        <p>One guy, four lanes, real experiments. Built in public so you can see what works and what doesn't.</p>
+      </div>
+      <div>
+        <h4>Lanes</h4>
+        <ul class="foot-links">
+          <li><a href="/index.html">Warrior</a></li>
+          <li><a href="/the-stack.html">The Stack</a></li>
+          <li><a href="/real-money.html">Real Money</a></li>
+          <li><a href="/top-1-percent.html">Top 1%</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul class="foot-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>Hawaiian Fury Warrior · 2026</span>
+      <span>Discipline · Wealth · Performance</span>
+      <span>Set in Fraunces &amp; JetBrains Mono</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
